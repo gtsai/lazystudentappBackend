@@ -6,6 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/lazyapp');
+// var Schema = mongoose.Schema;
+// var User = new Schema ({
+//   name: String,
+//   email: String,
+//   password: String
+// });
+//
+// mongoose.model('User',User);
+
+
+
 var api = require('./routes/api');
 var users = require('./routes/users');
 
@@ -25,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', api);
+app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
