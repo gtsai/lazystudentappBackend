@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <title>Profile</title>
+</head>
+<body>
+<nav class="top_banner">
+    <div id="left-side-banner">
+        <div>LSA</div>
+
+        <div><a href = "/">Home</a></div>
+
+        <div><a href = "about.html">About</a></div>
+    </div>
+    <div class="right-side-banner">
+        <div class="search_bar">
+            <form class="search_bar">
+                <button class="search_button">Search</button>
+                <input type="text" value="">
+            </form>
+        </div>
+
+        <div><a id= "userprofile" href='/profile'>Profile</a></div>
+
+    </div>
+</nav>
+
+<div id="login-registration-container">
+    <div id="login-window">
+        <h3>Login</h3>
+        <form action="http://localhost:3000/users" method="get">
+            <input type="text" placeholder="Email">
+            <p></p>
+            <input type="text" placeholder="Password">
+            <p></p>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div id="registration-window">
+        <h3>Registration</h3>
+        <form action="http://localhost:3000/users" method="post">
+            <input type="text" placeholder="Name">
+            <p></p>
+            <input type="text" placeholder="Email">
+            <p></p>
+            <input type="text" placeholder="Password">
+            <p></p>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</div>
+
+<script src="javascripts/javascript.js"></script>
+</body>
+</html>

@@ -1,8 +1,369 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+nav {
+  background-color: mediumaquamarine;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 40px;
+  padding-top: 15px;
+  font-family: arial;
+  z-index: 10;
+  font-weight: bold;
+  border-radius: 3px;
 }
 
-a {
-  color: #00B7FF;
+#left-side-banner {
+  position: relative;
+  left: 10px;
+}
+
+nav div{
+  display: inline-block;
+}
+
+.right-side-banner {
+  right: 10px;
+  position: absolute;
+  font-weight: bold;
+}
+
+#userprofile {
+  border: solid;
+  border-color: #195943;
+  border-radius: 5px;
+  background-color: #5FC2A0;
+  font-family: arial;
+  color: #195943;
+  font-weight: bold;
+  font-size: medium;
+  text-decoration: none;
+}
+
+#login-registration-container {
+  display: inline;
+}
+
+#login-window {
+  width: 250px;
+  height: 350px;
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 20%;
+  border: solid;
+  border-radius: 5px;
+  border-color: #195943;
+  padding: 30px 50px;
+  font-family: arial;
+  color: #195943;
+}
+
+#registration-window {
+  width: 250px;
+  height: 350px;
+  display: block;
+  position: absolute;
+  top: 100px;
+  right: 20%;
+  border: solid;
+  border-radius: 5px;
+  border-color: #195943;
+  padding: 30px 50px;
+  font-family: arial;
+  color: #195943;
+}
+
+
+.chat-box {
+  position: fixed;
+  right: 0;
+  background-color: white;
+  border: solid black 2px;
+  width: 20%;
+  height: 91%;
+  top: 55px;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  border-radius: 5px;
+<!--display: none;-->
+}
+
+#chat-title {
+  font-family: Arial;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  border-radius: 3px;
+  background-color: mediumaquamarine;
+}
+
+#chat-messages {
+  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-grow: 1;
+  font-size: small;
+}
+
+.messagecontainer {
+  position: relative;
+  left: 3px;
+  top: 1px;
+}
+
+hr {
+  border: dashed;
+  border-width: 1px;
+}
+
+#chat-box {
+  height: 70px;
+  bottom: 0;
+  width: 100%;
+}
+
+#chat-input{
+  width: 98.5%;
+  height: 50%;
+  vertical-align: top;
+}
+
+#chat-box button {
+  right: 0;
+  margin: 5px;
+}
+
+#add-card-button {
+  width: 250px;
+  height: 300px;
+  border: solid 2px;
+  font-family: arial;
+  font-size: medium;
+  position: relative;
+  left: 30%;
+  top:60px;
+  border-radius: 7px;
+}
+
+.content{
+  margin-top: 100px;
+  position: relative;
+  width: 80%;
+  left: 0;
+}
+
+.preview_cards{
+  border: solid;
+  width: 250px;
+  min-height: 300px;
+  margin: 5px;
+  font-family: arial;
+  position: relative;
+  display: inline-block;
+  border-radius: 7px;
+}
+
+.card_title{
+  background-color: mediumaquamarine;
+  margin: 0;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.author{
+  text-align: center;
+}
+
+.preview_card_tags{
+  min-height:75px;
+  margin: 0;
+  margin-bottom: 5px;
+
+  /*overflow: scroll;*/
+  /*max-height: 45px;*/
+  /*overflow-x: hidden;*/
+}
+
+.preview_card_tags li{
+  display: inline-block;
+  background-color: mediumaquamarine;
+  border-radius: 3px;
+  margin: 2px;
+}
+.cards_tags {
+
+}
+
+.card_tags li{
+  display: inline-block;
+  background-color: mediumaquamarine;
+  border-radius: 3px;
+  margin: 2px;
+}
+
+.card_thumbnail{
+  text-align: center;
+}
+
+.upload_date{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 2px;
+  background-color: mediumaquamarine;
+  margin: 0;
+
+}
+
+.normal_full_card{
+  width: 500px;
+  min-height: 600px;
+  font-family: arial;
+  position: absolute;
+  border: solid;
+  left: 37%;
+  top: -380px;
+  background-color: white;
+}
+
+.edit_full_card{
+  width: 500px;
+  min-height: 600px;
+  font-family: arial;
+  position: absolute;
+  border: solid;
+  left: 37%;
+  top: -380px;
+  background-color: white;
+}
+
+.x button{
+  background-color: lightgrey;
+  font-weight: bold;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.full-title h2{
+  background-color: mediumaquamarine;
+  margin: 0;
+  text-align: center;
+}
+
+.full-tags li {
+  display: inline-block;
+  background-color: mediumaquamarine;
+  border-radius: 3px;
+  margin: 2px;
+}
+
+.author-date {
+  text-align: center;
+  background-color: white;
+}
+
+.full-text-content {
+  border: solid;
+  border-width: 1px;
+  text-align: center;
+  height: 200px;
+  margin: 10px;
+}
+
+.file-bar {
+  border: solid;
+  border-width: 1px;
+  height: 150px;
+  margin: 10px;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.file-bar a{
+  display: inline-block;
+  padding: 8px;
+}
+
+.delete-button {
+  bottom: 20px;
+  left: 100px;
+  position: absolute;
+}
+
+.edit-button {
+  bottom: 20px;
+  left: 220px;
+  position: absolute;
+  width: 40px;
+  height: 20px;
+}
+
+.download-button {
+  bottom: 20px;
+  right: 100px;
+  position: absolute;
+}
+
+.enter-title input {
+  text-align: center;
+  width: 99%;
+  background-color: mediumaquamarine;
+  font-size: medium;
+  height: 50px;
+}
+
+.enter-tags input {
+  text-align: center;
+  font-size: medium;
+}
+
+#tags {
+  display: inline;
+}
+
+.tag {
+  background-color: mediumaquamarine;
+  border-radius: 3px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.enter-text-content input {
+  text-align: center;
+  border: solid;
+  border-width: 1px;
+  width: 100%;
+  height: 300px;
+  font-size: medium;
+}
+
+.upload {
+  text-align: center;
+  padding: 10px;
+}
+
+.lower-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 28.5%;
+}
+
+.lower-buttons table tr td {
+  padding: 20px;
+}
+
+.hide {
+  display: none;
+  z-index: 15;
+}
+
+.hidden {
+  display: none;
+  z-index: 15;
 }
