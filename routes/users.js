@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/lazyapp');
 
 var User = mongoose.model('users',
     {
