@@ -1,48 +1,55 @@
 var express = require('express');
 var router = express.Router();
 
-var mongoose = require('mongoose');
+var User = require('../model/user');
 
-var User = mongoose.model('users',
-    {
-      name: String,
-      email: String,
-      password: String
-    }
-);
+router.get('/', function(req, res, next) {
+    console.log('ok');
+});
 
-router.get('/', function(req, res) {
-  User.find({}, function (err, users) {
-    console.log(err);
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('done');
-      res.json({
-        data: users
-      })
-    }
+router.post('/login', function(req, res) {
+  var user = new User(
+      {
+        email: req.body.email,
+        password: req.body.password
+      }
+  );
+  user.save(function (err, user) {
+      var params = {
+          status: false
+      };
+      if (err) {
+          console.log(err);
+      } else {
+          if () {
+                //use find, find returns an array
+              params.status = true;
+              res.render('login',params);
+          } else {
+
+          }
+      }
   });
 });
 
-router.post('/', function(req, res) {
+router.post('/register', function(req, res) {
   var user = new User(
       {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: req.body.password
       }
   );
   user.save(function (err, user) {
-    console.log(err);
+      var params = {
+          status: false
+      };
     if (err) {
       console.log(err);
     } else {
-      console.log('done');
-      res.json({
-        data: user
-      })
+        params.status = true;
     }
+      res.render('register',params);
   });
 });
 

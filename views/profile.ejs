@@ -23,17 +23,16 @@
         </div>
 
         <div><a id= "userprofile" href='/profile'>Profile</a></div>
-
     </div>
 </nav>
 
 <div id="login-registration-container">
     <div id="login-window">
         <h3>Login</h3>
-        <form action="http://localhost:3000/users" method="get">
-            <input type="text" placeholder="Email">
+        <form action="/users/login" method="post">
+            <input type="text" placeholder="Email" name="email">
             <p></p>
-            <input type="text" placeholder="Password">
+            <input type="text" placeholder="Password" name="password">
             <p></p>
             <input type="submit" value="Login">
         </form>
@@ -41,12 +40,12 @@
 
     <div id="registration-window">
         <h3>Registration</h3>
-        <form action="http://localhost:3000/users" method="post">
-            <input type="text" placeholder="Name">
+        <form action="/users/register" method="post">
+            <input type="text" placeholder="Name" name="name">
             <p></p>
-            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Email" name="email">
             <p></p>
-            <input type="text" placeholder="Password">
+            <input type="text" placeholder="Password" name="password">
             <p></p>
             <input type="submit" value="Register">
         </form>
