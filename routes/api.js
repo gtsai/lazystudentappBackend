@@ -1,23 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/lazyapp');
-
-var Card = mongoose.model('cards',
-    {
-        title: String,
-        body: String,
-        tags: [String],
-        images: [String],
-        author: String,
-        createdAt: {type:Date, default: Date.now}
-    }
-);
+var Card = require('../model/card');
 
 router.get('/', function(req, res) {
     Card.find({}, function (err, cards) {
-        console.log(err);
         if (err) {
             console.log(err);
         } else {
@@ -40,7 +27,6 @@ router.post('/', function(req, res) {
         }
     );
     card.save(function (err, card) {
-        console.log(err);
         if (err) {
             console.log(err);
         } else {
@@ -54,8 +40,6 @@ router.post('/', function(req, res) {
 
 router.patch('/:id', function(req, res) {
     Card.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, card) {
-        console.log(req.body)
-        console.log(card)
         if (err) {
             console.log(err);
         } else {
