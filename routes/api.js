@@ -5,7 +5,6 @@ var Card = require('../model/card');
 
 router.get('/', function(req, res) {
     Card.find({}, function (err, cards) {
-        console.log(err);
         if (err) {
             console.log(err);
         } else {
@@ -28,7 +27,6 @@ router.post('/', function(req, res) {
         }
     );
     card.save(function (err, card) {
-        console.log(err);
         if (err) {
             console.log(err);
         } else {
