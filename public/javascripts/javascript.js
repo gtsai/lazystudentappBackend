@@ -17,14 +17,14 @@ function appendPreviewCard(response){
     }
     var preview = `<div class="preview_cards" data-index="${response.data.length - 1}" id="${response.data._id}">
         <h3 class="card_title">${response.data.title}</h3>
-        <div class="author">${response.data.author}</div>
+        <div class="author">By: ${response.data.author.name}</div>
         <ul class="preview_card_tags">
         ${tag_items}
         </ul>
         <div class="card_thumbnail">
         <img src="images/150x150.jpg" >
         </div>
-        <p class="upload_date">YYYY-MM-DD</p>
+        <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
         </div>`;
     $(element).append(preview);
 };
@@ -47,14 +47,14 @@ $(function(){
                 }
                 var preview = `<div class="preview_cards" id="${response.data[i]._id}" data-index="${i}">
             <h3 class="card_title">${response.data[i].title}</h3>
-            <div class="author">${response.data[i].author}</div>
+            <div class="author">By: ${response.data[i].author.name}</div>
             <ul class="preview_card_tags">
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
             <img src="images/150x150.jpg" >
             </div>
-            <p class="upload_date">YYYY-MM-DD</p>
+            <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
                 $(element).append(preview);
             }
@@ -210,7 +210,7 @@ $(function(){
         console.log(clicked_id);
         $('.full-title > h2').text(cards[clicked_id].title);
         $('.full-text-content > p').text(cards[clicked_id].body);
-        $('.author-date').text(`${cards[clicked_id].author} on YYYY-MM-DD`);
+        $('.author-date').text(`By: ${cards[clicked_id].author.name} on ${cards[clicked_id].createdAt.substring(0,10)}`);
         var tag_items = '';
         for (var i=0; i < cards[clicked_id].tags.length; i++){
             tag_items += `<li>${cards[clicked_id].tags[i]}</li>`;
