@@ -10,6 +10,7 @@ var session = require('client-sessions');
 var mongoose = require('mongoose');
 var mongoURL = 'mongodb://localhost/lazyapp';
 mongoose.connect('mongodb://localhost/lazyapp');
+var User = require('./model/user');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -49,7 +50,7 @@ app.use(session({
   ephemeral: true
 }));
 
-app.get(function(req, res, next) {
+app.use(function(req, res, next) {
   if (req.session && req.session.user) {
     User.findOne({ email: req.session.user.email }, function (err, user) {
       if (user) {
@@ -78,11 +79,6 @@ app.get(function(req, res, next) {
 // app.get('/', requireLogin, function(req, res) {
 //   res.render('/');
 // });
-
-app.get('/logout', function(req, res) {
-  req.session.reset();
-  res.redirect('/');
-});
 
 
 app.use('/', routes);

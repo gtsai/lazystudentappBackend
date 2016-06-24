@@ -24,6 +24,11 @@
 
     <div><a id= "userprofile" href='/profile'>Profile</a></div>
 
+    <% if (user) { %>
+    <div>Welcome <%= user %></div>
+    <a href="/logout">Log Out</a>
+    <% } %>
+
   </div>
 </nav>
 

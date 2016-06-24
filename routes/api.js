@@ -16,6 +16,12 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/logout', function(req, res) {
+    req.session.reset();
+    res.render('logout',{status: true});
+    //res.redirect('/');
+});
+
 router.post('/', function(req, res) {
     var card = new Card(
         {
