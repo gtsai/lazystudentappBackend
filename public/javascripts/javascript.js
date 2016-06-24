@@ -24,7 +24,7 @@ function appendPreviewCard(response){
         <div class="card_thumbnail">
         <img src="images/150x150.jpg" >
         </div>
-        <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
+        <p class="upload_date">${response.data.createdAt.substring(0,10)}</p>
         </div>`;
     $(element).append(preview);
 };
@@ -124,7 +124,7 @@ $(function(){
                 },
                 traditional: true,
                 success: function(response){
-                    console.log(response)
+                    console.log(response);
                     var object_id = response.data._id;
                     cards[object_id] = response.data;
                     $(`#${object_id} > h3`).text(response.data.title);
@@ -159,9 +159,9 @@ $(function(){
                 traditional: true,
                 success: function(response){
                     appendPreviewCard(response);
-                    var object_id = response.data._id
-                    cards[object_id]= response.data
-                    console.log(cards)
+                    var object_id = response.data._id;
+                    cards[object_id]= response.data;
+                    console.log(cards);
                     reset_title.value = null;
                     reset_body.value = null;
                     $(cardTag).empty();

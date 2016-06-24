@@ -16,6 +16,24 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/search', function(req, res) {
+    console.log(req.body)
+    console.log(req.query)
+    console.log(req.params)
+    console.log('got here');
+    Card.textSearch(req.query.query, function (err, output) {
+        console.log(req.query.query);
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('hi');
+            console.log(output);
+            console.log('hi');
+        }
+        console.log(output);
+    });
+});
+
 router.post('/', function(req, res) {
     var card = new Card(
         {
