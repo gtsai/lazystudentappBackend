@@ -57,6 +57,7 @@ app.get(function(req, res, next) {
         delete req.user.password; // delete the password from the session
         req.session.user = user;  //refresh the session value
         res.locals.user = user;
+        console.log(req.user);
       }
       // finishing processing the middleware and run the route
       next();
@@ -66,17 +67,17 @@ app.get(function(req, res, next) {
   }
 });
 
-function requireLogin (req, res, next) {
-  if (!req.user) {
-    res.redirect('/');
-  } else {
-    next();
-  }
-};
-
-app.get('/', requireLogin, function(req, res) {
-  res.render('/');
-});
+// function requireLogin (req, res, next) {
+//   if (!req.user) {
+//     res.redirect('/');
+//   } else {
+//     next();
+//   }
+// };
+//
+// app.get('/', requireLogin, function(req, res) {
+//   res.render('/');
+// });
 
 app.get('/logout', function(req, res) {
   req.session.reset();
