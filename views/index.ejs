@@ -22,11 +22,13 @@
       </form>
     </div>
 
-    <div><a id= "userprofile" href='/profile'>Profile</a></div>
+
 
     <% if (user) { %>
-    <div>Welcome <%= user %></div>
-    <a href="/logout">Log Out</a>
+    <div>Welcome <%= user.name %></div>
+    <a href='/logout'>Log Out</a>
+    <% } else {%>
+    <div><a id= "userprofile" href='/profile'>Login</a></div>
     <% } %>
 
   </div>

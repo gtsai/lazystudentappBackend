@@ -5,10 +5,14 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   console.log('hello');
   console.log(req.user);
-  console.log('hello');
+  var user = (req.user !== undefined) ?  req.user : null;
+  res.render('index', { title: 'Lazy Student App', user: req.user });
 
-  res.render('index', { title: 'Lazy Student App', user: req.user.name });
+});
 
+router.get('/logout', function(req, res) {
+  req.session.reset();
+  res.redirect('/');
 });
 
 module.exports = router;
