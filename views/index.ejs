@@ -26,9 +26,9 @@
 
     <% if (user) { %>
     <div>Welcome <%= user.name %></div>
-    <a href='/logout'>Log Out</a>
+    <a class= "usersession" href='/logout'>Log Out</a>
     <% } else {%>
-    <div><a id= "userprofile" href='/profile'>Login</a></div>
+    <div><a class= "usersession" href='/profile'>Login</a></div>
     <% } %>
 
   </div>
