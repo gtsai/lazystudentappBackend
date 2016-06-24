@@ -23,7 +23,10 @@ router.post('/', function(req, res) {
             body: req.body.body,
             tags: req.body.tags,
             images: [],
-            author: "Author"
+            author: {
+                id: req.user._id,
+                name: req.user.name
+            }
         }
     );
     card.save(function (err, card) {
@@ -57,7 +60,6 @@ router.delete('/:id', function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log('done');
             res.end()
         }
     });
