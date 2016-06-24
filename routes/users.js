@@ -19,16 +19,11 @@ router.post('/login', function(req, res) {
     var params = {
           status: false
     };
-    console.log(req.body);
     User.find({email: req.body.email}, function (err, users) {
-        if (err) {
-            console.log(err);
+        console.log(users);
+        if (users == []){
+            console.log('Email does not exist.Please login again.');
         } else {
-            console.log('done');
-            console.log(users);
-            if (users == []){
-                console.log('Email does not exist.Please login again.');
-            }
             for (var object in users) {
                 if (users[object].password == req.body.password) {
                     params.status = true;
