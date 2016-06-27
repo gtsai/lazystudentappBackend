@@ -38,9 +38,10 @@ router.get('/search', function(req, res) {
             console.log('search results below:');
             var searchResults = output;
             console.log(searchResults);
-            res.json({
-                data: searchResults
-            })
+            res.render('results');
+            // res.json({
+            //     data: searchResults
+            // })
         }
     });
 });

@@ -3,12 +3,12 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <title><%= title %></title>
+    <title>Lazy Student App</title>
 </head>
 <body>
 <nav class="top_banner">
     <div id="left-side-banner">
-        <div>LSA</div>
+        <div>LSA!</div>
 
         <div><a href = "/">Home</a></div>
 
@@ -22,12 +22,6 @@
             </form>
         </div>
 
-        <% if (user) { %>
-        <div>Welcome <%= user.name %></div>
-        <a class= "usersession" href='/logout'>Log Out</a>
-        <% } else {%>
-        <div><a class= "usersession" href='/profile'>Login</a></div>
-        <% } %>
 
     </div>
 </nav>
