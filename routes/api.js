@@ -8,7 +8,6 @@ router.get('/', function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log('done');
             res.json({
                 data: cards
             })
@@ -16,21 +15,33 @@ router.get('/', function(req, res) {
     });
 });
 
+// router.get('/search', function(req, res) {
+//     console.log('got here');
+//     Card.textSearch(req.query.query, function (err, output) {
+//         console.log(req.query.query);
+//         console.log(output);
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log('hi');
+//             console.log(output);
+//             console.log('hi');
+//         }
+//     });
+// });
+
 router.get('/search', function(req, res) {
-    console.log(req.body)
-    console.log(req.query)
-    console.log(req.params)
-    console.log('got here');
-    Card.textSearch(req.query.query, function (err, output) {
-        console.log(req.query.query);
+    Card.find({$text: {$search: req.query.query }}, function (err, output) {
         if (err) {
             console.log(err);
         } else {
-            console.log('hi');
-            console.log(output);
-            console.log('hi');
+            console.log('search results below:');
+            var searchResults = output;
+            console.log(searchResults);
+            res.json({
+                data: searchResults
+            })
         }
-        console.log(output);
     });
 });
 

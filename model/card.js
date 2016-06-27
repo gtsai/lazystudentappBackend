@@ -13,7 +13,7 @@ var schema = new Schema({
 
 
 schema.plugin(textSearch);
-schema.index({title: 'text'});
+schema.index({title: "text"});
 
 
 

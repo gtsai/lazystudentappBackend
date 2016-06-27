@@ -69,19 +69,6 @@ app.use(function(req, res, next) {
   }
 });
 
-// function requireLogin (req, res, next) {
-//   if (!req.user) {
-//     res.redirect('/');
-//   } else {
-//     next();
-//   }
-// };
-//
-// app.get('/', requireLogin, function(req, res) {
-//   res.render('/');
-// });
-
-
 app.use('/', routes);
 app.use('/api', api);
 app.use('/users', users);

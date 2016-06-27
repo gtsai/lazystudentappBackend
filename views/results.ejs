@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+<nav class="top_banner">
+    <div id="left-side-banner">
+        <div>LSA</div>
+
+        <div><a href = "/">Home</a></div>
+
+        <div><a href = "about.html">About</a></div>
+    </div>
+    <div class="right-side-banner">
+        <div class="search_bar">
+            <form class="search_bar" action="/api/search" method="get">
+                <button type='submit' class="search_button">Search</button>
+                <input type="text" placeholder="Search" name="query">
+            </form>
+        </div>
+
+        <% if (user) { %>
+        <div>Welcome <%= user.name %></div>
+        <a class= "usersession" href='/logout'>Log Out</a>
+        <% } else {%>
+        <div><a class= "usersession" href='/profile'>Login</a></div>
+        <% } %>
+
+    </div>
+</nav>
+
+<div class="chat-box">
+    <h1 id="chat-title">Chat</h1>
+    <div id="chat-messages">
+    </div>
+    <div id="chat-box">
+        <input id="chat-input" type="text" placeholder="Enter message here">
+        <button id="chat-send-button">Send</button>
+    </div>
+</div>
+
+<button id="add-card-button">+Add Card</button>
+
+<div class="content">
+    <div class="preview_cards" style= "display:none;">
+        <h3 class="card_title">Notes for Chemistry</h3>
+        <div class="author">Author</div>
+        <ul class="card_tags">
+            <li>Math</li>
+            <li>Chemistry</li>
+        </ul>
+        <div class="card_thumbnail">
+            <img src="images/150x150.jpg" >
+        </div>
+        <p class="upload_date">YYYY-MM-DD</p>
+    </div>
+
+    <div class="normal_full_card hidden">
+
+        <div class="x full-close-action">
+            <button>X</button>
+        </div>
+
+        <div class="full-title">
+            <h2>Title</h2>
+        </div>
+
+        <div class="author-date">Author name on YYYY-MM-DD</div>
+
+        <div>
+            <ul class="full-tags">
+            </ul>
+        </div>
+
+        <div class="full-text-content">
+            <p>Text content</p>
+        </div>
+
+        <div class="file-bar">
+            <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
+            <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
+            <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
+            <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
+            <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
+        </div>
+
+        <div class="delete-button">
+            <button>Delete</button>
+        </div>
+
+        <div class="edit-button">
+            <button id="edit-existing">Edit</button>
+        </div>
+
+        <div class="download-button">
+            <button>Download</button>
+        </div>
+
+    </div>
+
+    <div class="edit_full_card hide">
+
+        <div class="x close-action">
+            <button>X</button>
+        </div>
+        <br>
+        <div class="enter-title">
+            <input id='new-card-title'type="text" placeholder="Enter title here">
+        </div>
+
+        <div class="author-date">Author name on YYYY-MM-DD</div>
+
+        <div class="enter-tags">
+            <div id="tags"></div>
+            <input id='new-card-tags' type="text" placeholder="Enter tags">
+        </div>
+
+        <div class="enter-text-content">
+            <input id='new-card-notes' placeholder="Enter text content here">
+
+        </div>
+
+        <div class="upload">
+            <button>Upload</button>
+        </div>
+
+        <div class="lower-buttons">
+            <table class="button_table">
+                <tr>
+                    <td>
+                        <button class="close-action">Cancel</button>
+                    </td>
+                    <td>
+                        <button class="save">Save</button>
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+<script src="javascripts/javascript.js"></script>
+</body>
+</html>
