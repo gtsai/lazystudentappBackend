@@ -16,10 +16,8 @@
   </div>
   <div class="right-side-banner">
     <div class="search_bar">
-      <form class="search_bar" action="/api/search" method="get">
-        <button type='submit' class="search_button">Search</button>
-        <input type="text" placeholder="Search" name="query">
-      </form>
+        <!--<button class="search_button">Search</button>-->
+        <input id='search-input' type="text" placeholder="Search" name="query">
     </div>
 
     <% if (user) { %>
@@ -108,7 +106,7 @@
     </div>
     <br>
     <div class="enter-title">
-      <input id='new-card-title'type="text" placeholder="Enter title here">
+      <input id='new-card-title' type="text" placeholder="Enter title here">
     </div>
 
     <div class="author-date">Author name on YYYY-MM-DD</div>

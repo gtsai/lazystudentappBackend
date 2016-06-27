@@ -9,6 +9,7 @@ var chatMessage = document.querySelector('#chat-input');
 var reset_title = document.getElementById('new-card-title');
 var reset_body = document.getElementById('new-card-notes');
 var reset_message = document.getElementById('chat-input');
+var query = document.querySelector('#search-input');
 
 function appendPreviewCard(response){
     var tag_items = '';
@@ -169,9 +170,47 @@ $(function(){
                     editCardContainer.css("display", "none");
                     clicked_id = null;
                 }
-            });}
-
+            });
+        }
     });
+
+    // $('.search_button').on('click', function(){
+    $('#search-input').on('keydown',function(e){
+        if (e.keyCode === 13) {
+            $.ajax({
+                url: "http://localhost:3000/api/search",
+                type: "GET",
+                data: {
+                    title: this.value
+                },
+                traditional: true,
+                success: function (response) {
+                    for (var i=0; i < response.data.length; i++){
+                        var tag_items = '';
+                        for (j=0; j < response.data[i].tags.length; j++) {
+                            tag_items += `<li>${response.data[i].tags[j]}</li>`;
+                        }
+                        var preview = `<div class="preview_cards" id="${response.data[i]._id}" data-index="${i}">
+            <h3 class="card_title">${response.data[i].title}</h3>
+            <div class="author">By: ${response.data[i].author.name}</div>
+            <ul class="preview_card_tags">
+            ${tag_items}
+            </ul>
+            <div class="card_thumbnail">
+            <img src="images/150x150.jpg" >
+            </div>
+            <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
+            </div>`;
+                        $(element).append(preview);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+    });
+    
 
     $('#new-card-tags').on('keydown',function(e){
         if (e.keyCode === 13) {

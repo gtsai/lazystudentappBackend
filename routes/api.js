@@ -31,17 +31,16 @@ router.get('/', function(req, res) {
 // });
 
 router.get('/search', function(req, res) {
-    Card.find({$text: {$search: req.query.query }}, function (err, output) {
+    Card.find({$text: {$search: req.query.title }}, function (err, output) {
         if (err) {
             console.log(err);
         } else {
             console.log('search results below:');
             var searchResults = output;
-            console.log(searchResults);
-            res.render('results');
-            // res.json({
-            //     data: searchResults
-            // })
+            // res.render('results');
+            res.json({
+                data: searchResults
+            })
         }
     });
 });
