@@ -4,11 +4,35 @@ var tags = [];
 var cardTitle = document.querySelector('#new-card-title');
 var cardNotes = document.querySelector('#new-card-notes');
 var element = document.getElementsByClassName("content");
+var previewcards = document.getElementsByClassName("preview-cards-container");
 var cardTag = document.querySelector('#tags');
-var chatMessage = document.querySelector('#chat-input');
 var reset_title = document.getElementById('new-card-title');
 var reset_body = document.getElementById('new-card-notes');
-var reset_message = document.getElementById('chat-input');
+var query = document.querySelector('#search-input');
+var socket = io.connect('http://localhost:8080');
+
+$('#chat-input').on('keydown',function(e){
+    if (e.keyCode === 13) {
+        var body = $(this).val();
+        $.post("http://localhost:3000/api/messages", {body}, function(){
+
+        });
+        // $(this).val('');
+    }
+});
+
+socket.on('new_chat_message', function(msg) {
+    console.log(msg);
+    var current = moment(msg.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+    console.log(current);
+    var a = `<li>
+        <div class="messagecontainer">${msg.author.name} at ${current}</div>
+        <div class="messagecontainer">${msg.message}</div>
+        <hr>
+        </li>`;
+    $('#chat-messages').append(a);
+});
+
 
 function appendPreviewCard(response){
     var tag_items = '';
@@ -17,14 +41,14 @@ function appendPreviewCard(response){
     }
     var preview = `<div class="preview_cards" data-index="${response.data.length - 1}" id="${response.data._id}">
         <h3 class="card_title">${response.data.title}</h3>
-        <div class="author">${response.data.author}</div>
+        <div class="author">By: ${response.data.author.name}</div>
         <ul class="preview_card_tags">
         ${tag_items}
         </ul>
         <div class="card_thumbnail">
         <img src="images/150x150.jpg" >
         </div>
-        <p class="upload_date">YYYY-MM-DD</p>
+        <p class="upload_date">${response.data.createdAt.substring(0,10)}</p>
         </div>`;
     $(element).append(preview);
 };
@@ -47,14 +71,14 @@ $(function(){
                 }
                 var preview = `<div class="preview_cards" id="${response.data[i]._id}" data-index="${i}">
             <h3 class="card_title">${response.data[i].title}</h3>
-            <div class="author">${response.data[i].author}</div>
+            <div class="author">By: ${response.data[i].author.name}</div>
             <ul class="preview_card_tags">
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
             <img src="images/150x150.jpg" >
             </div>
-            <p class="upload_date">YYYY-MM-DD</p>
+            <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
                 $(element).append(preview);
             }
@@ -124,7 +148,7 @@ $(function(){
                 },
                 traditional: true,
                 success: function(response){
-                    console.log(response)
+                    console.log(response);
                     var object_id = response.data._id;
                     cards[object_id] = response.data;
                     $(`#${object_id} > h3`).text(response.data.title);
@@ -159,9 +183,9 @@ $(function(){
                 traditional: true,
                 success: function(response){
                     appendPreviewCard(response);
-                    var object_id = response.data._id
-                    cards[object_id]= response.data
-                    console.log(cards)
+                    var object_id = response.data._id;
+                    cards[object_id]= response.data;
+                    console.log(cards);
                     reset_title.value = null;
                     reset_body.value = null;
                     $(cardTag).empty();
@@ -169,9 +193,47 @@ $(function(){
                     editCardContainer.css("display", "none");
                     clicked_id = null;
                 }
-            });}
-
+            });
+        }
     });
+
+    // $('.search_button').on('click', function(){
+    $('#search-input').on('keydown',function(e){
+        if (e.keyCode === 13) {
+            $.ajax({
+                url: "http://localhost:3000/api/search",
+                type: "GET",
+                data: {
+                    title: this.value
+                },
+                traditional: true,
+                success: function (response) {
+                    for (var i=0; i < response.data.length; i++){
+                        var tag_items = '';
+                        for (j=0; j < response.data[i].tags.length; j++) {
+                            tag_items += `<li>${response.data[i].tags[j]}</li>`;
+                        }
+                        var preview = `<div class="preview_cards" id="${response.data[i]._id}" data-index="${i}">
+            <h3 class="card_title">${response.data[i].title}</h3>
+            <div class="author">By: ${response.data[i].author.name}</div>
+            <ul class="preview_card_tags">
+            ${tag_items}
+            </ul>
+            <div class="card_thumbnail">
+            <img src="images/150x150.jpg" >
+            </div>
+            <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
+            </div>`;
+                        $(element).append(preview);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+    });
+    
 
     $('#new-card-tags').on('keydown',function(e){
         if (e.keyCode === 13) {
@@ -182,15 +244,6 @@ $(function(){
         }
     });
 
-    $('#chat-input').on('keydown',function(e){
-        if (e.keyCode === 13) {
-            var a = `<div class="messagecontainer">Author - Date:</div>
-        <div class="messagecontainer">${chatMessage.value}</div>
-        <hr>`;
-            $('#chat-messages').append(a);
-            reset_message.value = null;
-        }
-    });
 
 
     $('#tags').on('click','.tag', function(e){
@@ -210,7 +263,7 @@ $(function(){
         console.log(clicked_id);
         $('.full-title > h2').text(cards[clicked_id].title);
         $('.full-text-content > p').text(cards[clicked_id].body);
-        $('.author-date').text(`${cards[clicked_id].author} on YYYY-MM-DD`);
+        $('.author-date').text(`By: ${cards[clicked_id].author.name} on ${cards[clicked_id].createdAt.substring(0,10)}`);
         var tag_items = '';
         for (var i=0; i < cards[clicked_id].tags.length; i++){
             tag_items += `<li>${cards[clicked_id].tags[i]}</li>`;
@@ -219,13 +272,6 @@ $(function(){
         fullCardContainer.css("display", "initial");
     });
 
-    $('#chat-send-button').on('click',function(){
-        var a = `<div class="messagecontainer">Author - Date:</div>
-        <div class="messagecontainer">${chatMessage.value}</div>
-        <hr>`;
-        $('#chat-messages').append(a);
-        reset_message.value = null;
-    });
 
     
 

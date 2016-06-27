@@ -10,4 +10,6 @@ var schema = new Schema({
     createdAt: {type:Date, default: Date.now}
 });
 
+schema.index({title: "text"});
+
 module.exports = mongoose.model('cards', schema);

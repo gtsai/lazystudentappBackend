@@ -75,7 +75,7 @@ nav div{
 }
 
 
-.chat-box {
+.chat {
   position: fixed;
   right: 0;
   background-color: white;
@@ -107,11 +107,13 @@ nav div{
   overflow-x: hidden;
   flex-grow: 1;
   font-size: small;
+  list-style-type: none;
+  padding: 5px;
 }
 
 .messagecontainer {
   position: relative;
-  left: 3px;
+  left: 0;
   top: 1px;
 }
 

@@ -6,6 +6,9 @@
   <title><%= title %></title>
 </head>
 <body>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="http://momentjs.com/downloads/moment.min.js"></script>
 <nav class="top_banner">
   <div id="left-side-banner">
     <div>LSA</div>
@@ -16,13 +19,9 @@
   </div>
   <div class="right-side-banner">
     <div class="search_bar">
-      <form class="search_bar">
-        <button class="search_button">Search</button>
-        <input type="text" value="">
-      </form>
+        <!--<button class="search_button">Search</button>-->
+        <input id='search-input' type="text" placeholder="Search" name="query">
     </div>
-
-
 
     <% if (user) { %>
     <div>Welcome <%= user.name %></div>
@@ -34,13 +33,12 @@
   </div>
 </nav>
 
-<div class="chat-box">
+<div class="chat">
   <h1 id="chat-title">Chat</h1>
-  <div id="chat-messages">
-  </div>
+  <ul id="chat-messages">
+  </ul>
   <div id="chat-box">
     <input id="chat-input" type="text" placeholder="Enter message here">
-    <button id="chat-send-button">Send</button>
   </div>
 </div>
 
@@ -110,7 +108,7 @@
     </div>
     <br>
     <div class="enter-title">
-      <input id='new-card-title'type="text" placeholder="Enter title here">
+      <input id='new-card-title' type="text" placeholder="Enter title here">
     </div>
 
     <div class="author-date">Author name on YYYY-MM-DD</div>
@@ -141,7 +139,9 @@
         </tr>
 
       </table>
+  <div class="preview-cards-container">
 
+  </div>
 
     </div>
 

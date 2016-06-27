@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var session = require('client-sessions');
+var time = require('moment');
+
+// var textSearch = require('mongoose-text-search');
 
 var mongoose = require('mongoose');
 var mongoURL = 'mongodb://localhost/lazyapp';
@@ -23,6 +26,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var users = require('./routes/users');
 var profile = require('./routes/profile');
+var socket = require('./socketio');
 
 var app = express();
 
@@ -66,19 +70,6 @@ app.use(function(req, res, next) {
     next();
   }
 });
-
-// function requireLogin (req, res, next) {
-//   if (!req.user) {
-//     res.redirect('/');
-//   } else {
-//     next();
-//   }
-// };
-//
-// app.get('/', requireLogin, function(req, res) {
-//   res.render('/');
-// });
-
 
 app.use('/', routes);
 app.use('/api', api);
