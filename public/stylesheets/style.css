@@ -111,7 +111,13 @@ nav div{
   padding: 5px;
 }
 
-.messagecontainer {
+.messageauthor {
+  position: relative;
+  left: 0;
+  top: 1px;
+  font-weight: bold;
+}
+.messagebody {
   position: relative;
   left: 0;
   top: 1px;
