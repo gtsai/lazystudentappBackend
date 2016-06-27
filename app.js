@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var session = require('client-sessions');
+
 // var textSearch = require('mongoose-text-search');
 
 var mongoose = require('mongoose');
@@ -24,7 +25,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var users = require('./routes/users');
 var profile = require('./routes/profile');
-
+var socket = require('./socketio');
 
 var app = express();
 

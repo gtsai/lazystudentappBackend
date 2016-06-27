@@ -30,15 +30,31 @@
   </div>
 </nav>
 
-<div class="chat-box">
+<div class="chat">
   <h1 id="chat-title">Chat</h1>
-  <div id="chat-messages">
-  </div>
+  <ul id="chat-messages">
+  </ul>
   <div id="chat-box">
+    <form id="chat-form">
     <input id="chat-input" type="text" placeholder="Enter message here">
     <button id="chat-send-button">Send</button>
+    </form>
   </div>
 </div>
+
+<script src="http://localhost:8080/socketio.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  $('#chat-form').submit(function(){
+    socket.emit('chat message', $('#chat-input').val());
+    $('#chat-input').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    $('#chat-messages').append($('<li>').text(msg));
+  });
+</script>
 
 <button id="add-card-button">+Add Card</button>
 
@@ -137,7 +153,9 @@
         </tr>
 
       </table>
+  <div class="preview-cards-container">
 
+  </div>
 
     </div>
 

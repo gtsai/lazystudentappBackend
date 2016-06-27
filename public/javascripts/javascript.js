@@ -4,11 +4,10 @@ var tags = [];
 var cardTitle = document.querySelector('#new-card-title');
 var cardNotes = document.querySelector('#new-card-notes');
 var element = document.getElementsByClassName("content");
+var previewcards = document.getElementsByClassName("preview-cards-container");
 var cardTag = document.querySelector('#tags');
-var chatMessage = document.querySelector('#chat-input');
 var reset_title = document.getElementById('new-card-title');
 var reset_body = document.getElementById('new-card-notes');
-var reset_message = document.getElementById('chat-input');
 var query = document.querySelector('#search-input');
 
 function appendPreviewCard(response){
@@ -221,15 +220,6 @@ $(function(){
         }
     });
 
-    $('#chat-input').on('keydown',function(e){
-        if (e.keyCode === 13) {
-            var a = `<div class="messagecontainer">Author - Date:</div>
-        <div class="messagecontainer">${chatMessage.value}</div>
-        <hr>`;
-            $('#chat-messages').append(a);
-            reset_message.value = null;
-        }
-    });
 
 
     $('#tags').on('click','.tag', function(e){
@@ -258,13 +248,6 @@ $(function(){
         fullCardContainer.css("display", "initial");
     });
 
-    $('#chat-send-button').on('click',function(){
-        var a = `<div class="messagecontainer">Author - Date:</div>
-        <div class="messagecontainer">${chatMessage.value}</div>
-        <hr>`;
-        $('#chat-messages').append(a);
-        reset_message.value = null;
-    });
 
     
 
