@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var io = require('../socketio');
+
 
 var Card = require('../model/card');
+var Message = require('../model/message');
 
 router.get('/', function(req, res) {
     Card.find({}, function (err, cards) {
@@ -14,6 +17,40 @@ router.get('/', function(req, res) {
         }
     });
 });
+
+router.get('/messages', function(req, res) {
+    Message.find({}, function (err, messages) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({
+                data: messages
+            })
+        }
+    });
+});
+
+router.post('/messages', function(req,res){
+    var message = new Message(
+        {
+            author: {
+                id: req.user._id,
+                name: req.user.name
+            },
+            message: req.body.body
+        }
+    );
+    message.save(function (err, message) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('done');
+            io.emit('new_chat_message',message);
+        }
+    });
+    res.end();
+});
+
 
 // router.get('/search', function(req, res) {
 //     console.log('got here');

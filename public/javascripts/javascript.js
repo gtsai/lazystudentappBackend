@@ -9,6 +9,30 @@ var cardTag = document.querySelector('#tags');
 var reset_title = document.getElementById('new-card-title');
 var reset_body = document.getElementById('new-card-notes');
 var query = document.querySelector('#search-input');
+var socket = io.connect('http://localhost:8080');
+
+$('#chat-input').on('keydown',function(e){
+    if (e.keyCode === 13) {
+        var body = $(this).val();
+        $.post("http://localhost:3000/api/messages", {body}, function(){
+
+        });
+        // $(this).val('');
+    }
+});
+
+socket.on('new_chat_message', function(msg) {
+    console.log(msg);
+    var current = moment(msg.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+    console.log(current);
+    var a = `<li>
+        <div class="messagecontainer">${msg.author.name} at ${current}</div>
+        <div class="messagecontainer">${msg.message}</div>
+        <hr>
+        </li>`;
+    $('#chat-messages').append(a);
+});
+
 
 function appendPreviewCard(response){
     var tag_items = '';
