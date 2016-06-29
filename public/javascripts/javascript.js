@@ -4,7 +4,7 @@ var tags = [];
 var cardTitle = document.querySelector('#new-card-title');
 var cardNotes = document.querySelector('#new-card-notes');
 var element = document.getElementsByClassName("content");
-var previewcards = document.getElementsByClassName("preview-cards-container");
+var previewCards = document.getElementsByClassName("preview-cards-container");
 var cardTag = document.querySelector('#tags');
 var reset_title = document.getElementById('new-card-title');
 var reset_body = document.getElementById('new-card-notes');
@@ -21,16 +21,19 @@ $('#chat-input').on('keydown',function(e){
 });
 
 socket.on('new_chat_message', function(msg) {
+    appendMessages(msg)
+});
+
+function appendMessages(msg){
     console.log(msg);
     var current = moment(msg.createdAt).format('MMMM Do YYYY, h:mm:ss a');
-    console.log(current);
     var a = `<li>
         <div class="messageauthor">${msg.author.name} at ${current}</div>
         <div class="messagebody">${msg.message}</div>
         <hr>
         </li>`;
     $('#chat-messages').append(a);
-});
+};
 
 
 function appendPreviewCard(response){
@@ -49,10 +52,18 @@ function appendPreviewCard(response){
         </div>
         <p class="upload_date">${response.data.createdAt.substring(0,10)}</p>
         </div>`;
-    $(element).append(preview);
+    $(previewCards).append(preview);
 };
 
 $(function(){
+    $.get("http://localhost:3000/api/messages", function(messages){
+        console.log(messages.data);
+        for (i=0; i < messages.data.length; i++) {
+            appendMessages(messages.data[i]);
+        }
+        console.log('helloooo!')
+    });
+
     $.ajax({
         url: "http://localhost:3000/api",
         type: "GET",
@@ -79,7 +90,7 @@ $(function(){
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
-                $(element).append(preview);
+                $(previewCards).append(preview);
             }
         }
     });
@@ -207,6 +218,7 @@ $(function(){
                 },
                 traditional: true,
                 success: function (response) {
+                    $(previewCards).empty();
                     for (var i=0; i < response.data.length; i++){
                         var tag_items = '';
                         for (j=0; j < response.data[i].tags.length; j++) {
@@ -223,7 +235,7 @@ $(function(){
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
-                        $(element).append(preview);
+                        $(previewCards).append(preview);
                     }
                 },
                 error: function (err) {
