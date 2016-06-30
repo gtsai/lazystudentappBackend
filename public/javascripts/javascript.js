@@ -141,8 +141,7 @@ $(function(){
                 data: {
                     title: $('#new-card-title').val(),
                     tags: tags,
-                    body: $('#new-card-notes').val(),
-                    author: 'Author'
+                    body: $('#new-card-notes').val()
                 },
                 traditional: true,
                 success: function(response){
@@ -175,8 +174,7 @@ $(function(){
                 data: {
                     title: $('#new-card-title').val(),
                     tags: tags,
-                    body: $('#new-card-notes').val(),
-                    author: 'Author'
+                    body: $('#new-card-notes').val()
                 },
                 traditional: true,
                 success: function(response){
@@ -233,7 +231,6 @@ $(function(){
         }
     });
     
-
     $('#new-card-tags').on('keydown',function(e){
         if (e.keyCode === 13) {
             var tag = $('<div/>').addClass('tag').html(this.value);
@@ -242,9 +239,7 @@ $(function(){
             this.value = null;
         }
     });
-
-
-
+    
     $('#tags').on('click','.tag', function(e){
         $(e.target).remove();
         var b = tags.indexOf(e.target.textContent);
