@@ -134,9 +134,10 @@ hr {
 }
 
 #chat-input{
-  width: 98.5%;
-  height: 50%;
+  width: 97.5%;
+  height: 60%;
   vertical-align: top;
+  font-family: arial;
 }
 
 #chat-box button {
