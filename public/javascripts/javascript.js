@@ -1,23 +1,10 @@
 var cards = {};
 var tags = [];
-var socket = io.connect('http://localhost:8080');
-
-$('#chat-input').on('keydown',function(e){
-    if (e.keyCode === 13) {
-        var body = $(this).val();
-        $.post("http://localhost:3000/api/messages", {body}, function(){
-        });
-        $(this).val('');
-    }
-});
-
-socket.on('new_chat_message', function(msg) {
-    appendMessages(msg)
-});
+var socket = io.connect("http://localhost:8080");
 
 function appendMessages(msg){
     console.log(msg);
-    var current = moment(msg.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+    var current = moment(msg.createdAt).format("MMMM Do YYYY, h:mm:ss a");
     var a = `<li>
         <div class="messageauthor">${msg.author.name} at ${current}</div>
         <div class="messagebody">${msg.message}</div>
@@ -25,7 +12,6 @@ function appendMessages(msg){
         </li>`;
     $('#chat-messages').append(a);
 };
-
 
 function appendPreviewCard(response){
     var tag_items = '';
@@ -43,7 +29,7 @@ function appendPreviewCard(response){
         </div>
         <p class="upload_date">${response.data.createdAt.substring(0,10)}</p>
         </div>`;
-    $(".preview-cards-container").append(preview);
+    $("#preview-cards-container").append(preview);
 };
 
 $(function(){
@@ -52,7 +38,7 @@ $(function(){
         for (i=0; i < messages.data.length; i++) {
             appendMessages(messages.data[i]);
         }
-        console.log('helloooo!')
+        console.log("helloooo!")
     });
 
     $.ajax({
@@ -81,12 +67,11 @@ $(function(){
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
-                $(".preview-cards-container").append(preview);
+                $("#preview-cards-container").append(preview);
             }
         }
     });
-
-
+    
     $('.delete-button > button').on('click', function(){
         $.ajax({
             url: `http://localhost:3000/api/${clicked_id}`,
@@ -118,6 +103,14 @@ $(function(){
         $('.hidden').css("display", "none");
         clicked_id = null;
         tags = [];
+    });
+
+    $("#add-card-button").on('mouseover',function(){
+        $("#add-card-button").css("opacity", "0.5")
+    });
+
+    $("#add-card-button").on('mouseout',function(){
+        $("#add-card-button").css("opacity", "1")
     });
 
     $('#edit-existing').on('click', function(){
@@ -193,7 +186,6 @@ $(function(){
         }
     });
 
-    // $('.search_button').on('click', function(){
     $('#search-input').on('keydown',function(e){
         if (e.keyCode === 13) {
             $.ajax({
@@ -204,7 +196,7 @@ $(function(){
                 },
                 traditional: true,
                 success: function (response) {
-                    $(".preview-cards-container").empty();
+                    $("#preview-cards-container").empty();
                     for (var i=0; i < response.data.length; i++){
                         var tag_items = '';
                         for (j=0; j < response.data[i].tags.length; j++) {
@@ -221,7 +213,7 @@ $(function(){
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
-                        $(".preview-cards-container").append(preview);
+                        $("#preview-cards-container").append(preview);
                     }
                 },
                 error: function (err) {
@@ -251,7 +243,7 @@ $(function(){
         }
     });
 
-    $('.content').on('click','.preview_cards', function(){
+    $('#content').on('click','.preview_cards', function(){
         $('.full-tags').empty();
         clicked_id = $(this).attr('id');
         console.log(clicked_id);
@@ -266,8 +258,25 @@ $(function(){
         $('.hidden').css("display", "initial");
     });
 
+    $('#content').on('mouseover','.preview_cards', function() {
+        $(this).css("opacity", "0.5");
+    });
 
-    
+    $('#content').on('mouseout','.preview_cards', function() {
+        $(this).css("opacity", "1");
+    });
 
+    $('#chat-input').on('keydown',function(e){
+        if (e.keyCode === 13) {
+            var body = $(this).val();
+            $.post("http://localhost:3000/api/messages", {body}, function(){
+            });
+            $(this).val('');
+        }
+    });
+
+    socket.on('new_chat_message', function(msg) {
+        appendMessages(msg)
+    });
 
 });

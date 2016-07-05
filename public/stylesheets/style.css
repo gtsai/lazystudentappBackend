@@ -21,7 +21,7 @@ nav div{
   display: inline-block;
 }
 
-.right-side-banner {
+#right-side-banner {
   right: 10px;
   position: absolute;
   font-weight: bold;
@@ -74,8 +74,7 @@ nav div{
   color: #195943;
 }
 
-
-.chat {
+#chat {
   position: fixed;
   right: 0;
   background-color: white;
@@ -148,7 +147,7 @@ hr {
 #add-card-button {
   width: 250px;
   height: 300px;
-  border: solid 2px;
+  border: solid 3px;
   font-family: arial;
   font-size: medium;
   position: relative;
@@ -157,7 +156,7 @@ hr {
   border-radius: 7px;
 }
 
-.content{
+#content{
   margin-top: 100px;
   position: relative;
   width: 80%;
@@ -190,10 +189,6 @@ hr {
   min-height:75px;
   margin: 0;
   margin-bottom: 5px;
-
-  /*overflow: scroll;*/
-  /*max-height: 45px;*/
-  /*overflow-x: hidden;*/
 }
 
 .preview_card_tags li{
@@ -201,9 +196,6 @@ hr {
   background-color: mediumaquamarine;
   border-radius: 3px;
   margin: 2px;
-}
-.cards_tags {
-
 }
 
 .card_tags li{
@@ -224,7 +216,6 @@ hr {
   padding: 2px;
   background-color: mediumaquamarine;
   margin: 0;
-
 }
 
 .normal_full_card{

@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var io = require('../socketio');
-
-
 var Card = require('../model/card');
 var Message = require('../model/message');
 
@@ -51,22 +49,6 @@ router.post('/messages', function(req,res){
     res.end();
 });
 
-
-// router.get('/search', function(req, res) {
-//     console.log('got here');
-//     Card.textSearch(req.query.query, function (err, output) {
-//         console.log(req.query.query);
-//         console.log(output);
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log('hi');
-//             console.log(output);
-//             console.log('hi');
-//         }
-//     });
-// });
-
 router.get('/search', function(req, res) {
     Card.find({$text: {$search: req.query.title }}, function (err, output) {
         if (err) {
@@ -74,7 +56,6 @@ router.get('/search', function(req, res) {
         } else {
             console.log('search results below:');
             var searchResults = output;
-            // res.render('results');
             res.json({
                 data: searchResults
             })

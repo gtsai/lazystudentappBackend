@@ -8,8 +8,6 @@ var cors = require('cors');
 var session = require('client-sessions');
 var time = require('moment');
 
-// var textSearch = require('mongoose-text-search');
-
 var mongoose = require('mongoose');
 var mongoURL = 'mongodb://localhost/lazyapp';
 mongoose.connect('mongodb://localhost/lazyapp');
@@ -18,7 +16,6 @@ var User = require('./model/user');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
   console.log('Successfully connected to mongo at:', mongoURL);
 });
 

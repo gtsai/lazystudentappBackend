@@ -9,7 +9,7 @@
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
-<nav class="top_banner">
+<nav>
   <div id="left-side-banner">
     <div>LSA</div>
 
@@ -17,8 +17,8 @@
 
     <div><a href = "about.html">About</a></div>
   </div>
-  <div class="right-side-banner">
-    <div class="search_bar">
+  <div id="right-side-banner">
+    <div>
         <input id='search-input' type="text" placeholder="Search" name="query">
     </div>
 
@@ -28,11 +28,10 @@
     <% } else {%>
     <div><a class= "usersession" href='/profile'>Login</a></div>
     <% } %>
-
   </div>
 </nav>
 
-<div class="chat">
+<div id="chat">
   <h1 id="chat-title">Chat</h1>
   <ul id="chat-messages">
   </ul>
@@ -43,7 +42,7 @@
 
 <button id="add-card-button">+Add Card</button>
 
-<div class="content">
+<div id="content">
   <div class="preview_cards" style= "display:none;">
     <h3 class="card_title">Notes for Chemistry</h3>
     <div class="author">Author</div>
@@ -58,26 +57,20 @@
   </div>
 
   <div class="normal_full_card hidden">
-
     <div class="x full-close-action">
       <button>X</button>
     </div>
-
     <div class="full-title">
       <h2>Title</h2>
     </div>
-
     <div class="author-date">Author name on YYYY-MM-DD</div>
-
     <div>
       <ul class="full-tags">
       </ul>
     </div>
-
     <div class="full-text-content">
       <p>Text content</p>
     </div>
-
     <div class="file-bar">
       <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
       <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
@@ -85,23 +78,18 @@
       <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
       <a href="http://dummyimage.com/100x100/000/fff"><img src="http://dummyimage.com/100x100/000/fff"></a>
     </div>
-
     <div class="delete-button">
       <button>Delete</button>
     </div>
-
     <div class="edit-button">
       <button id="edit-existing">Edit</button>
     </div>
-
     <div class="download-button">
       <button>Download</button>
     </div>
-
   </div>
 
   <div class="edit_full_card hide">
-
     <div class="x close-action">
       <button>X</button>
     </div>
@@ -109,23 +97,16 @@
     <div class="enter-title">
       <input id='new-card-title' type="text" placeholder="Enter title here">
     </div>
-
-    <!--<div class="author-date">Author name on YYYY-MM-DD</div>-->
-
     <div class="enter-tags">
       <div id="tags"></div>
       <input id='new-card-tags' type="text" placeholder="Enter tags">
     </div>
-
     <div class="enter-text-content">
       <input id='new-card-notes' placeholder="Enter text content here">
-
     </div>
-
     <div class="upload">
       <button>Upload</button>
     </div>
-
     <div class="lower-buttons">
       <table class="button_table">
         <tr>
@@ -138,10 +119,9 @@
         </tr>
       </table>
     </div>
-
   </div>
 
-  <div class="preview-cards-container">
+  <div id="preview-cards-container">
   </div>
 
 
