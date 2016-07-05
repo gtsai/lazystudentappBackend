@@ -3,15 +3,17 @@ var router = express.Router();
 var User = require('../model/user');
 
 router.get('/', function(req, res) {
-    User.find({}, function (err, users) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json({
-                data: users
-            })
-        }
-    });
+    res.send('Request not received');
+    // User.find({}, function (err, users) {
+    //     if (err) {
+    //         res.send(alert('Request not received'));
+    //         console.log(err);
+    //     } else {
+    //         res.json({
+    //             data: users
+    //         })
+    //     }
+    // });
 });
 
 router.post('/login', function(req, res) {
@@ -25,6 +27,7 @@ router.post('/login', function(req, res) {
             res.render('login',params);
         } else {
             for (var object in users) {
+                console.log(object);
                 if (users[object].password == req.body.password) {
                     req.session.user = users[object];
                     res.redirect('/');
