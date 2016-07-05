@@ -4,6 +4,7 @@ var io = require('../socketio');
 var Card = require('../model/card');
 var Message = require('../model/message');
 
+
 router.get('/', function(req, res) {
     Card.find({}, function (err, cards) {
         if (err) {
@@ -27,6 +28,11 @@ router.get('/messages', function(req, res) {
         }
     });
 });
+
+// router.post('/upload', function(req,res){
+//     console.log(req.files);
+//
+// });
 
 router.post('/messages', function(req,res){
     var message = new Message(
@@ -64,18 +70,22 @@ router.get('/search', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+    var file = req.files;
+    console.log(file);
+    console.log(req);
     var card = new Card(
         {
             title: req.body.title,
             body: req.body.body,
             tags: req.body.tags,
-            images: [],
             author: {
                 id: req.user._id,
                 name: req.user.name
-            }
+            },
+            images: req.body.images
         }
     );
+    console.log(card);
     card.save(function (err, card) {
         if (err) {
             console.log(err);

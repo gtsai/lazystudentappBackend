@@ -167,7 +167,8 @@ $(function(){
                 data: {
                     title: $('#new-card-title').val(),
                     tags: tags,
-                    body: $('#new-card-notes').val()
+                    body: $('#new-card-notes').val(),
+                    images: $('#fileUploaded').val()
                 },
                 traditional: true,
                 success: function(response){
@@ -181,6 +182,10 @@ $(function(){
                     tags = [];
                     $('.hide').css("display", "none");
                     clicked_id = null;
+                },
+                error: function(response){
+                    console.log('not working!!');
+                    console.log($('#fileUploaded').val())
                 }
             });
         }

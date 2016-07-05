@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var session = require('client-sessions');
 var time = require('moment');
+var fileUpload = require('express-fileupload');
 
 var mongoose = require('mongoose');
 var mongoURL = 'mongodb://localhost/lazyapp';
@@ -39,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
-
+app.use(fileUpload());
 
 app.use(session({
   cookieName: 'session',
