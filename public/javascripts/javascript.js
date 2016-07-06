@@ -25,7 +25,7 @@ function appendPreviewCard(response){
         ${tag_items}
         </ul>
         <div class="card_thumbnail">
-        <img src="images/150x150.jpg" >
+        <img src="../images/${response.data.images.substring(12)}" >
         </div>
         <p class="upload_date">${response.data.createdAt.substring(0,10)}</p>
         </div>`;
@@ -63,7 +63,7 @@ $(function(){
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
-            <img src="images/150x150.jpg" >
+            <img src="../images/${response.data[1].images.substring(12)}" >
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
@@ -134,7 +134,8 @@ $(function(){
                 data: {
                     title: $('#new-card-title').val(),
                     tags: tags,
-                    body: $('#new-card-notes').val()
+                    body: $('#new-card-notes').val(),
+                    images: $('#fileUploaded').val()
                 },
                 traditional: true,
                 success: function(response){
@@ -214,7 +215,7 @@ $(function(){
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
-            <img src="images/150x150.jpg" >
+            <img src="../images/${response.data[1].images.substring(12)}" >
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;

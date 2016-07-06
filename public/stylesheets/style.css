@@ -208,7 +208,11 @@ hr {
 
 .card_thumbnail{
   text-align: center;
-}
+  margin: 0px;
+  padding: 0;
+  max-width: 242px;
+  max-height: 208px;
+  }
 
 .upload_date{
   position: absolute;

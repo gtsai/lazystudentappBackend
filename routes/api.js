@@ -70,9 +70,10 @@ router.get('/search', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    var file = req.files;
-    console.log(file);
     console.log(req);
+    var file = req.body.images.substring(12);
+    console.log(file);
+
     var card = new Card(
         {
             title: req.body.title,
