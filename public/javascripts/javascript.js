@@ -254,10 +254,8 @@ $(function(){
         clicked_id = $(this).attr('id');
         console.log(clicked_id);
         $('.full-title > h2').text(cards[clicked_id].title);
-
         $('.file-bar > a').attr('href', "../images/" + `${cards[clicked_id].images.substring(12)}`);
         $('.file-bar > a > img').attr('src', "../images/" + `${cards[clicked_id].images.substring(12)}`);
-
         $('.full-text-content > p').text(cards[clicked_id].body);
         $('.author-date').text(`By: ${cards[clicked_id].author.name} on ${cards[clicked_id].createdAt.substring(0,10)}`);
         var tag_items = '';
