@@ -63,7 +63,7 @@ $(function(){
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
-            <img src="../images/${response.data[1].images.substring(12)}" >
+            <img src="../images/${response.data[i].images.substring(12)}" >
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
@@ -215,7 +215,7 @@ $(function(){
             ${tag_items}
             </ul>
             <div class="card_thumbnail">
-            <img src="../images/${response.data[1].images.substring(12)}" >
+            <img src="../images/${response.data[i].images.substring(12)}" >
             </div>
             <p class="upload_date">${response.data[i].createdAt.substring(0,10)}</p>
             </div>`;
