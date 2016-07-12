@@ -8,6 +8,8 @@ var cors = require('cors');
 var session = require('client-sessions');
 var time = require('moment');
 var fileUpload = require('express-fileupload');
+var formidable = require('formidable');
+var fs = require('fs');
 
 var mongoose = require('mongoose');
 var mongoURL = 'mongodb://localhost/lazyapp';
@@ -38,9 +40,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(fileUpload());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use(session({
   cookieName: 'session',

@@ -71,9 +71,8 @@ router.get('/search', function(req, res) {
 
 router.post('/', function(req, res) {
     console.log(req);
-    var file = req.body.images.substring(12);
+    var file = req.body.images;
     console.log(file);
-
     var card = new Card(
         {
             title: req.body.title,
@@ -98,6 +97,28 @@ router.post('/', function(req, res) {
         }
     });
 });
+
+router.post('/upload', function(req,res){
+    var sampleFile;
+
+    if (!req.files) {
+        res.send('No files were uploaded.');
+        return;
+    }
+
+    sampleFile = req.files.sampleFile;
+    sampleFile.mv('./public/images', function(err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send('File uploaded!');
+        }
+    });
+});
+
+
+
 
 router.patch('/:id', function(req, res) {
     Card.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, card) {

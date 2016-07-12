@@ -101,15 +101,14 @@
       <input id='new-card-notes' placeholder="Enter text content here">
     </div>
     <div class="upload">
-      <!--<form ref='uploadForm'-->
-            <!--id='uploadForm'-->
-            <!--action='http://localhost:3000/api'-->
-            <!--method='post'-->
-            <!--encType="multipart/form-data">-->
-        <input id='fileUploaded' type="file" name="file" />
-        <!--<input type='submit' value='Upload!' action=""/>-->
-      <!--<button>Upload</button>-->
-        <!--</form>-->
+      <form ref='uploadForm'
+            id='uploadForm'
+            action='http://localhost:3000/api'
+            method='post'
+            encType="multipart/form-data">
+        <input id='fileUploaded' type="file" name='sampleFile'>
+        <input type='submit' value="Upload">
+        </form>
     </div>
     <div class="lower-buttons">
       <table class="button_table">

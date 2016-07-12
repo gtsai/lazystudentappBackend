@@ -5,7 +5,7 @@ var schema = new Schema({
     title: String,
     body: String,
     tags: [String],
-    images: String,
+    images: Object,
     author: Object, //{_id: '759125015', name:grace'}
     createdAt: {type:Date, default: Date.now}
 });

@@ -1,6 +1,7 @@
 var cards = {};
 var tags = [];
 var socket = io.connect("http://localhost:8080");
+var uploadedFile;
 
 function appendMessages(msg){
     console.log(msg);
@@ -124,6 +125,22 @@ $(function(){
             $('#tags').append(tag);
         }
     });
+    
+    $('#fileUploaded').on('change',function() {
+        var files = $(this).get(0).files;
+
+        if (files.length > 0) {
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                uploadedFile = file;
+                console.log(file);
+                console.log(file.name);
+                formData.append('upload', file);
+                console.log(formData)
+            }
+        }
+    });
 
     $(".save").on('click', function(){
         if (typeof clicked_id !== "undefined" && cards[clicked_id]){
@@ -135,7 +152,7 @@ $(function(){
                     title: $('#new-card-title').val(),
                     tags: tags,
                     body: $('#new-card-notes').val(),
-                    images: $('#fileUploaded').val()
+                    images: uploadedFile
                 },
                 traditional: true,
                 success: function(response){
@@ -169,7 +186,7 @@ $(function(){
                     title: $('#new-card-title').val(),
                     tags: tags,
                     body: $('#new-card-notes').val(),
-                    images: $('#fileUploaded').val()
+                    images: uploadedFile
                 },
                 traditional: true,
                 success: function(response){
@@ -186,11 +203,14 @@ $(function(){
                 },
                 error: function(response){
                     console.log('not working!!');
-                    console.log($('#fileUploaded').val())
+                    console.log(uploadedFile.name)
                 }
             });
         }
     });
+
+
+
 
     $('#search-input').on('keydown',function(e){
         if (e.keyCode === 13) {
@@ -228,7 +248,10 @@ $(function(){
             })
         }
     });
-    
+
+
+
+
     $('#new-card-tags').on('keydown',function(e){
         if (e.keyCode === 13) {
             var tag = $('<div/>').addClass('tag').html(this.value);
