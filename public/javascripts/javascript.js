@@ -134,8 +134,6 @@ $(function(){
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 uploadedFile = file;
-                console.log(file);
-                console.log(file.name);
                 formData.append('upload', file);
                 console.log(formData)
             }
