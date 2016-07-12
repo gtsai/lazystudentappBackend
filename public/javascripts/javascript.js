@@ -130,7 +130,7 @@ $(function(){
         var files = $(this).get(0).files;
 
         if (files.length > 0) {
-            var formData = new FormData();
+            var formData = new FormData(this);
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 uploadedFile = file;
